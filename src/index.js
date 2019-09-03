@@ -1,4 +1,8 @@
-const log = () => console.log('running');
-export default log;
+import React from 'react';
+import ReactDom from 'react-dom';
 
-log();
+ReactDom.render(
+    <h1>Hello Chatter!</h1>,
+document.getElementById('app'));
+
+
