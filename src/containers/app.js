@@ -7,7 +7,7 @@ const chatWindow = () => {
     return (
         <div className="chat-window">
             <div className="chat-container">
-
+                <Posts />
                 <InputGroup />
             </div>
         </div>
