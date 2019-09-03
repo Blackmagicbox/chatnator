@@ -1,16 +1,16 @@
 const path = require("path");
-const WebpackHtmlPlugin = require("webpack-html-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/app.js",
+    entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "../dist"),
         filename: "bundle.js",
-        publicPath: "/js/"
+        publicPath: ""
     },
     mode: 'development',
     devServer: {
-        contentBase: path.resolve(__dirname, "dist"),
+        contentBase: path.resolve(__dirname, "../dist"),
         index: 'index.html',
         port: 9000,
     },
@@ -31,11 +31,17 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-flow']
                     }
                 }
+            },
+            {
+                test: /\.hbs$/,
+                use: [
+                    "handlebars-loader"
+                ]
             }
         ]
     },
     plugins: [
-        new WebpackHtmlPlugin({
+        new HtmlWebpackPlugin({
             title: 'Chatnator',
             description: 'Simple chat interface',
             template: 'src/base-template.hbs',
