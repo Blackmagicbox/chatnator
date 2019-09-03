@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import { getMessages, sendMessage } from '../actions/actions';
 import InputGroup from '../components/InputGroup/InputGroup';
 import Posts from '../components/Posts/Posts';
 import './main.scss';
 
-const chatWindow = () => {
-    return (
-        <div className="chat-window">
-            <div className="chat-container">
-                <Posts />
-                <InputGroup />
+class App extends Component {
+    componentDidMount() {
+        this.props.GetMessages();
+    }
+    render() {
+        return (
+            <div className="chat-window">
+                <div className="chat-container">
+                    <Posts posts={this.props.messages}/>
+                    <InputGroup />
+                </div>
             </div>
-        </div>
-    )
-};
-export default chatWindow;
+        )
+    }
+}
+
+const mapStateToProps = (state) => ({
+    messages: state.messages,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    GetMessages: () => dispatch(getMessages()),
+    SendMessage: (message) => dispatch(sendMessage(message))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
