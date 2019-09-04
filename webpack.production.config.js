@@ -1,20 +1,23 @@
 const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "bundle.js",
-        publicPath: ""
+        filename: "bundle.[contenthash].js",
+        publicPath: "/static/"
     },
-    mode: 'development',
-    devServer: {
-        contentBase: path.resolve(__dirname, "./dist"),
-        index: 'index.html',
-        port: 9000,
+    mode: 'production',
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 10000,
+            automaticNameDelimiter: '_'
+        }
     },
-    devtool: "source-map",
     module: {
         rules: [
             {
@@ -24,7 +27,7 @@ module.exports = {
             {
                 test: /\.(css|scss)$/,
                 use: [
-                    'style-loader', 'css-loader', 'sass-loader',
+                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                 ]
             },
             {
@@ -51,6 +54,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'styles.[contenthash].css'
+        }),
+        new CleanWebpackPlugin('dist'),
         new HtmlWebpackPlugin({
             title: 'Chatnator',
             description: 'Simple chat interface',
