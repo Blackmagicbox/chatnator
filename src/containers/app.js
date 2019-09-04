@@ -9,12 +9,21 @@ class App extends Component {
     componentDidMount() {
         this.props.GetMessages();
     }
+
+    handleMessage = (message) => {
+        const post = {
+            message,
+            author: 'user',
+        };
+        this.props.SendMessage(post)
+    };
     render() {
         return (
             <div className="chat-window">
                 <div className="chat-container">
                     <Posts posts={this.props.messages}/>
-                    <InputGroup />
+                    <InputGroup onSendMessage={this.handleMessage} />
+                    <div className="top-frame" />
                 </div>
             </div>
         )
@@ -23,12 +32,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
     messages: state.messages,
+    message: state.message,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     GetMessages: () => dispatch(getMessages()),
     SendMessage: (message) => dispatch(sendMessage(message))
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

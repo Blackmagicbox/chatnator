@@ -14,6 +14,7 @@ module.exports = {
         index: 'index.html',
         port: 9000,
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -32,7 +33,12 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react',
+                            {'plugins': ['@babel/plugin-proposal-class-properties']}
+                        ]
+
                     }
                 }
             },

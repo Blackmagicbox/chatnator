@@ -9,7 +9,9 @@ export default function chatApp(state = initialState, action) {
             state.messages =  [...action.messages];
             return {...state};
         case SEND_MESSAGE_SUCCESS:
-            return action.message;
+            state.message = action.message;
+            state.messages.push(action.message);
+            return {...state};
         default:
             return state;
     }

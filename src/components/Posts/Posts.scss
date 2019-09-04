@@ -1,6 +1,12 @@
 .posts {
+  position: relative;
   width: 100%;
-  padding: 50px 10% 88px;
+  overflow: scroll;
+  height: 100%;
+  .posts-list {
+    height: auto;
+    padding: 50px 10% 88px;
+  }
 }
 
 .post {
@@ -8,10 +14,10 @@
   width: 100%;
   padding-bottom: 50px;
   &.they {
-    justify-content: left;
+    justify-content: flex-start;
   }
   &.me {
-    justify-content: right;
+    justify-content: flex-end;
   }
 
   &-their,
