@@ -1,0 +1,61 @@
+.posts {
+  position: relative;
+  width: 100%;
+  overflow: scroll;
+  height: 100%;
+  .posts-list {
+    height: auto;
+    padding: 50px 10% 88px;
+  }
+}
+
+.post {
+  display: flex;
+  width: 100%;
+  padding-bottom: 50px;
+  &.they {
+    justify-content: flex-start;
+  }
+  &.me {
+    justify-content: flex-end;
+  }
+
+  &-their,
+  &-mine {
+    padding: 20px;
+    max-width: 350px;
+    border-radius: 10px;
+    p {
+      line-height: normal;
+    }
+    span {
+      display: inline-block;
+      width: 100%;
+      font-size: 14.5px;
+    }
+    .time {
+      text-align: right;
+      margin-top: 15px;
+    }
+  }
+
+  &-their {
+    background-color: #efecec;
+    .author {
+      color: #707070;
+      margin-bottom: 15px;
+    }
+    .time {
+      color: #bfbcbc;
+    }
+    p {
+      color: #464646;
+    }
+  }
+
+  &-mine {
+    background-color: #0068f7;
+    color: white;
+    font-weight: bolder;
+  }
+}
