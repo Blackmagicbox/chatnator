@@ -1,7 +1,7 @@
 {
   "name": "chatnator",
   "version": "0.0.1",
-  "description": "Simple chat interface for Doodle code challenge",
+  "description": "Simple chat interface",
   "main": "app.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --hot",
